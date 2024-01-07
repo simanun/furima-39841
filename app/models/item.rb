@@ -11,10 +11,10 @@ class Item < ApplicationRecord
   validates :image, presence: true
   validates :title, presence: true
   validates :description, presence: true
-  validates :category_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :condition_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :delivery_cost_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :prefecture_id, numericality: { other_than: 1 , message: "can't be blank"}
-  validates :delivery_time_id, numericality: { other_than: 1 , message: "can't be blank" }
-  validates :price, presence: true, numericality:{ greater_than_or_equal_to:300, less_than_or_equal_to: 9999999}
+  validates :category_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :condition_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :delivery_cost_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :prefecture_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :delivery_time_id, numericality: { other_than: 1, message: "can't be blank" }
+  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 end
