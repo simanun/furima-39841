@@ -10,7 +10,7 @@ RSpec.describe PurchaseAddress, type: :model do
     end
 
     context '商品の購入ができるとき' do
-      it 'token,post_code,prefecture_idなど必須項目の全8項目が存在すれば登録できる' do
+      it 'token,post_code,prefecture_idなど必須項目が存在すれば登録できる' do
         expect(@purchase_address).to be_valid
       end
       it 'building_nameは空でも登録できる' do
