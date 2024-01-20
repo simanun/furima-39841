@@ -9,9 +9,8 @@ RSpec.describe PurchaseAddress, type: :model do
       sleep 0.1
     end
 
-  
     context '商品の購入ができるとき' do
-      it 'post_code,prefecture_idなど必須項目の全8項目が存在すれば登録できる' do
+      it 'token,post_code,prefecture_idなど必須項目の全8項目が存在すれば登録できる' do
         expect(@purchase_address).to be_valid
       end
       it 'building_nameは空でも登録できる' do
@@ -20,11 +19,10 @@ RSpec.describe PurchaseAddress, type: :model do
       end
     end
     context '商品の購入ができないとき' do
-      it 'クレジットカード情報が空では登録できない' do
-      end
-      it 'カードの有効期限が空では登録できない' do
-      end
-      it 'セキュリティコードが空では登録できない' do
+      it "tokenが空では登録できないこと" do
+        @purchase_address.token = nil
+        @purchase_address.valid?
+        expect(@purchase_address.errors.full_messages).to include("Token can't be blank")
       end
       it 'post_codeが空では登録できない' do
         @purchase_address.post_code = ''
