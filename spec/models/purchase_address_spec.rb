@@ -19,7 +19,7 @@ RSpec.describe PurchaseAddress, type: :model do
       end
     end
     context '商品の購入ができないとき' do
-      it "tokenが空では登録できないこと" do
+      it 'tokenが空では登録できないこと' do
         @purchase_address.token = nil
         @purchase_address.valid?
         expect(@purchase_address.errors.full_messages).to include("Token can't be blank")
@@ -32,7 +32,7 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'post_codeが半角のハイフンを含んだ正しい形式でないと登録できない' do
         @purchase_address.post_code = '1234567'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Post code is invalid. Include hyphen(-)")
+        expect(@purchase_address.errors.full_messages).to include('Post code is invalid. Include hyphen(-)')
       end
       it 'prefecture_idが1のままでは登録できない' do
         @purchase_address.prefecture_id = '1'
@@ -57,22 +57,22 @@ RSpec.describe PurchaseAddress, type: :model do
       it 'telephone_numberが全角では登録できない' do
         @purchase_address.telephone_number = '１１１１１１１１１１１'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Telephone number is not a number")
+        expect(@purchase_address.errors.full_messages).to include('Telephone number is not a number')
       end
       it 'telephone_numberが数値以外では登録できない' do
         @purchase_address.telephone_number = 'abcdefghijk'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Telephone number is not a number")
+        expect(@purchase_address.errors.full_messages).to include('Telephone number is not a number')
       end
       it 'telephone_numberが10桁未満では登録できない' do
         @purchase_address.telephone_number = '111'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Telephone number is too short or too long")
+        expect(@purchase_address.errors.full_messages).to include('Telephone number is too short or too long')
       end
       it 'telephone_numberが11桁以上では登録できない' do
         @purchase_address.telephone_number = '11111111111111'
         @purchase_address.valid?
-        expect(@purchase_address.errors.full_messages).to include("Telephone number is too short or too long")
+        expect(@purchase_address.errors.full_messages).to include('Telephone number is too short or too long')
       end
       it 'userが紐付いていないと登録できない' do
         @purchase_address.user_id = nil
