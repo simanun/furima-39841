@@ -1,9 +1,9 @@
 class PurchasesController < ApplicationController
   before_action :authenticate_user!, only: [:index, :create]
+  before_action :pre_item, only: [:index, :create]
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @purchase_address = PurchaseAddress.new
-    @item = Item.find(params[:item_id])
     if user_signed_in? && current_user.id != @item.user_id && @item.sold_out?
       redirect_to root_path
     elsif current_user.id == @item.user_id
@@ -13,7 +13,6 @@ class PurchasesController < ApplicationController
 
   def create
     @purchase_address = PurchaseAddress.new(purchase_params)
-    @item = Item.find(params[:item_id])
     amount = @item.price
     if @purchase_address.valid?
       pay_item(amount)
@@ -49,5 +48,9 @@ class PurchasesController < ApplicationController
       card: purchase_params[:token],
       currency: 'jpy'
     )
+  end
+
+  def pre_item
+    @item = Item.find(params[:item_id])
   end
 end
