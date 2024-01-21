@@ -4,9 +4,7 @@ class PurchasesController < ApplicationController
   def index
     gon.public_key = ENV['PAYJP_PUBLIC_KEY']
     @purchase_address = PurchaseAddress.new
-    if current_user.id != @item.user_id && @item.sold_out?
-      redirect_to root_path
-    elsif current_user.id == @item.user_id
+    if current_user.id == @item.user_id || @item.sold_out?
       redirect_to root_path
     end
   end
