@@ -81,6 +81,7 @@ end
 
 group :production do
   gem 'pg'
+  gem 'unicorn', '6.1.0'
 end
 
 gem 'devise'
